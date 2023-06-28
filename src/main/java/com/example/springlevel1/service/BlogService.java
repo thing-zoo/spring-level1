@@ -6,6 +6,7 @@ import com.example.springlevel1.entity.Post;
 import com.example.springlevel1.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -40,11 +41,21 @@ public class BlogService {
                 new IllegalArgumentException("선택한 게시물은 존재하지 않습니다."));
     }
 
+    @Transactional
     public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
-        if (Objects.equals(post.getPassword(), requestDto.getPassword())) {
+        if (post.getPassword().equals(requestDto.getPassword())) {
             post.update(requestDto);
         }
         return new PostResponseDto(post);
+    }
+
+    public String deletePost(Long id, PostRequestDto requestDto) {
+        Post post = findPost(id);
+        if (post.getPassword().equals(requestDto.getPassword())) {
+            blogRepository.delete(post);
+            return "success";
+        }
+        return "failure";
     }
 }

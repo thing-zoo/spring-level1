@@ -37,4 +37,10 @@ public class BlogController {
     public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return blogService.updatePost(id, requestDto);
     }
+
+    // 선택한 게시글 삭제
+    @DeleteMapping("/posts/{id}")
+    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        return blogService.deletePost(id, requestDto);
+    }
 }
