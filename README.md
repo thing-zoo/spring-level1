@@ -44,10 +44,10 @@ spring.jpa.properties.hibernate.use_sql_comments=true
 음... 관리자는 필요없는듯 하다...
 use case는 좀더 연습해야겠다.
 ## API 설계
-| Description | Method | URI | Request | Response |
-| - | - | - | - | - |
-| 전체 게시글 목록 조회 | GET | `/posts` | - | {<br>{<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>},...<br>} |
-| 게시글 작성 | POST | `/api/post/{id}` | {<br>"title": "title1",<br>"content": "content1",<br>"author":"author1"<br>} | {<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>} |
-| 선택한 게시글 조회 | GET | `/api/post/{id}` | - | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
-| 선택한 게시글 수정 | PUT | `/api/post/{id}` | {<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>} | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
-| 선택한 게시글 삭제 | DELETE | `/api/post/{id}` | {<br>"password": "password1"<br>} | "success" |
+| Description | Method | URI              | Request                                                                                                  | Response |
+| - | - |------------------|----------------------------------------------------------------------------------------------------------| - |
+| 전체 게시글 목록 조회 | GET | `/api/posts`     | -                                                                                                        | {<br>{<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>},...<br>} |
+| 게시글 작성 | POST | `/api/posts`     | {<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br> "password": "password1"<br>} | {<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>} |
+| 선택한 게시글 조회 | GET | `/api/post/{id}` | -                                                                                                        | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
+| 선택한 게시글 수정 | PUT | `/api/post/{id}` | {<br>"title": "title11",<br>"content": "content11",<br>"author":"author1",<br> "password": "password1"<br>}                          | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
+| 선택한 게시글 삭제 | DELETE | `/api/post/{id}` | {<br>"password": "password1"<br>}                                                                        | "success" |
