@@ -14,10 +14,16 @@ import java.util.List;
 public class BlogController {
     private final BlogService blogService;
 
+    // 게시글 작성
     @PostMapping("/posts")
     public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
         return blogService.createPost(requestDto);
     }
 
+    // 전체 게시글 조회
+    @GetMapping("/posts")
+    public List<PostResponseDto> getPosts() {
+        return blogService.getPosts();
+    }
 
 }

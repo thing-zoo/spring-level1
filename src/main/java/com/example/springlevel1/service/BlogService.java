@@ -7,6 +7,8 @@ import com.example.springlevel1.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BlogService {
@@ -19,4 +21,13 @@ public class BlogService {
 
         return new PostResponseDto(post);
     }
+
+    public List<PostResponseDto> getPosts() {
+        return blogRepository.findAllByOrderByCreatedAtDesc()
+                .stream()
+                .map(PostResponseDto::new)
+                .toList();
+    }
+
+
 }
