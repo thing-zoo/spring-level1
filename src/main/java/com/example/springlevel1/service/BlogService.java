@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -30,4 +31,20 @@ public class BlogService {
     }
 
 
+    public PostResponseDto getPostById(Long id) {
+        return new PostResponseDto(findPost(id));
+    }
+
+    private Post findPost(Long id) {
+        return blogRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("선택한 게시물은 존재하지 않습니다."));
+    }
+
+    public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
+        Post post = findPost(id);
+        if (Objects.equals(post.getPassword(), requestDto.getPassword())) {
+            post.update(requestDto);
+        }
+        return new PostResponseDto(post);
+    }
 }

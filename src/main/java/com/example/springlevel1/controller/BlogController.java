@@ -26,4 +26,15 @@ public class BlogController {
         return blogService.getPosts();
     }
 
+    // 선택한 게시글 조회
+    @GetMapping("/posts/{id}")
+    public PostResponseDto getPostById(@PathVariable Long id) {
+        return blogService.getPostById(id);
+    }
+
+    // 선택한 게시글 수정
+    @PutMapping("/posts/{id}")
+    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        return blogService.updatePost(id, requestDto);
+    }
 }
