@@ -40,14 +40,15 @@ spring.jpa.properties.hibernate.use_sql_comments=true
 패키지를 따로 만들어서 관리해준다!
 
 ## Use Case
-![](https://velog.velcdn.com/images/thing-zoo/post/82732382-178b-4e3b-9b0e-e934fccf1d39/image.png)
-음... 관리자는 필요없는듯 하다...
+<img width="727" alt="스크린샷 2023-06-29 오전 11 33 44" src="https://github.com/thing-zoo/spring-level1/assets/62596783/c9814a90-c05c-419f-bbe6-1b14289fdff0">
+
 use case는 좀더 연습해야겠다.
+
 ## API 설계
-| Description | Method | URI               | Request                                                                                                  | Response |
-| - | - |-------------------|----------------------------------------------------------------------------------------------------------| - |
+| Description | Method | URI               | Request                                                                                                  | Response                                                                                                                                                                                          |
+| - | - |-------------------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 전체 게시글 목록 조회 | GET | `/api/posts`      | -                                                                                                        | {<br>{<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>},...<br>} |
-| 게시글 작성 | POST | `/api/posts`      | {<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br> "password": "password1"<br>} | {<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>} |
-| 선택한 게시글 조회 | GET | `/api/posts/{id}` | -                                                                                                        | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
-| 선택한 게시글 수정 | PUT | `/api/posts/{id}` | {<br>"title": "title11",<br>"content": "content11",<br>"author":"author1",<br> "password": "password1"<br>}                          | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>} |
-| 선택한 게시글 삭제 | DELETE | `/api/posts/{id}` | {<br>"password": "password1"<br>}                                                                        | "success" |
+| 게시글 작성 | POST | `/api/posts`      | {<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br> "password": "password1"<br>} | {<br>"id": 1,<br>"title": "title1",<br>"content": "content1",<br>"author":"author1",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-01T12:34:56.78900"<br>}               |
+| 선택한 게시글 조회 | GET | `/api/posts/{id}` | -                                                                                                        | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>}            |
+| 선택한 게시글 수정 | PUT | `/api/posts/{id}` | {<br>"title": "title11",<br>"content": "content11",<br>"author":"author1",<br> "password": "password1"<br>}                          | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>}            |
+| 선택한 게시글 삭제 | DELETE | `/api/posts/{id}` | {<br>"password": "password1"<br>}                                                                        | {<br>"success": true<br>}                                                                                                                                                                         |
