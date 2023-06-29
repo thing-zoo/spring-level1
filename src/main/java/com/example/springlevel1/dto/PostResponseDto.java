@@ -7,13 +7,13 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-@JsonInclude(JsonInclude.Include.NON_NULL) //명시한 값만 json에 포함!!
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostResponseDto {
+    private Boolean success;
     private Long id;
     private String title;
     private String content;
     private String author;
-    private String password;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
@@ -24,5 +24,9 @@ public class PostResponseDto {
         this.author = post.getAuthor();
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
+    }
+
+    public PostResponseDto(boolean success) {
+        this.success = success;
     }
 }

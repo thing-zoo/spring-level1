@@ -31,30 +31,27 @@ public class PostService {
     }
 
 
-    public PostResponseDto getPostById(Long id) {
+    public PostResponseDto getPost(Long id) {
         return new PostResponseDto(findPost(id));
-    }
-
-    private Post findPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("선택한 게시물은 존재하지 않습니다."));
     }
 
     @Transactional
     public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
-        if (post.getPassword().equals(requestDto.getPassword())) {
-            post.update(requestDto);
-        }
+        post.checkPassword(requestDto.getPassword());
+        post.update(requestDto);
+
         return new PostResponseDto(post);
     }
 
-    public String deletePost(Long id, PostRequestDto requestDto) {
+    public void deletePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
-        if (post.getPassword().equals(requestDto.getPassword())) {
-            postRepository.delete(post);
-            return "success";
-        }
-        return "failure";
+        post.checkPassword(requestDto.getPassword());
+        postRepository.delete(post);
+    }
+
+    private Post findPost(Long id) {
+        return postRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("선택한 게시물은 존재하지 않습니다."));
     }
 }

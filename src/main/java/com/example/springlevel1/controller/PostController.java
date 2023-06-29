@@ -28,8 +28,8 @@ public class PostController {
 
     // 선택한 게시글 조회
     @GetMapping("/posts/{id}")
-    public PostResponseDto getPostById(@PathVariable Long id) {
-        return postService.getPostById(id);
+    public PostResponseDto getPost(@PathVariable Long id) {
+        return postService.getPost(id);
     }
 
     // 선택한 게시글 수정
@@ -40,7 +40,12 @@ public class PostController {
 
     // 선택한 게시글 삭제
     @DeleteMapping("/posts/{id}")
-    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
-        return postService.deletePost(id, requestDto);
+    public PostResponseDto deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        try {
+            postService.deletePost(id, requestDto);
+            return new PostResponseDto(true);
+        } catch (IllegalArgumentException e) {
+            return new PostResponseDto(false);
+        }
     }
 }
