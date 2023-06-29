@@ -52,3 +52,33 @@ use case는 좀더 연습해야겠다.
 | 선택한 게시글 조회 | GET | `/api/posts/{id}` | -                                                                                                        | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>}            |
 | 선택한 게시글 수정 | PUT | `/api/posts/{id}` | {<br>"title": "title11",<br>"content": "content11",<br>"author":"author1",<br> "password": "password1"<br>}                          | {<br>"id": 1,<br>"title": "title11",<br>"content": "content11",<br>"author":"author11",<br>"createdAt": "2023-01-01T12:34:56.78900",<br>"modifiedAt": "2023-01-02T12:34:56.78900"<br>}            |
 | 선택한 게시글 삭제 | DELETE | `/api/posts/{id}` | {<br>"password": "password1"<br>}                                                                        | {<br>"success": true<br>}                                                                                                                                                                         |
+
+## 코드 리뷰
+
+1. 수정, 삭제 API의 request를 어떤 방식으로 사용하셨나요? (param, query, body)
+
+```
+수정, 삭제할때 id값을 param으로 받았고, 비밀번호와 수정할 내용은 body를 통해 받아옴.
+비밀번호와 수정사항 같은 노출되면 안되는 정보를 받을 때는 body를 사용. 
+```
+
+2. 어떤 상황에 어떤 방식의 request를 써야하나요?
+
+```
+조회 GET, 생성 POST, 수정 PUT, 삭제 DELETE
+```
+
+3. RESTful한 API를 설계했나요? 어떤 부분이 그런가요? 어떤 부분이 그렇지 않나요?
+
+```
+- 적절한 메소드 방식 사용
+- 객체명은 복수로 하는게 좋다고 한다
+```
+
+4. 적절한 관심사 분리를 적용하였나요? (Controller, Repository, Service)
+
+```
+Controller-Repository-Service 로 나눠서 개발함
+```
+
+5. API 명세서 작성 가이드라인을 검색하여 직접 작성한 API 명세서와 비교해보세요!
